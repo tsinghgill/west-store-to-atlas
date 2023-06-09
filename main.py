@@ -1,8 +1,7 @@
 import logging
 import sys
 
-from turbine.runtime import RecordList
-from turbine.runtime import Runtime
+from turbine.src.turbine_app import RecordList, TurbineApp
 
 logging.basicConfig(level=logging.INFO)
 
@@ -27,7 +26,7 @@ def transform(records: RecordList) -> RecordList:
 
 class App:
     @staticmethod
-    async def run(turbine: Runtime):
+    async def run(turbine: TurbineApp):
         try:
             source = await turbine.resources("west-store-mongo")
 
