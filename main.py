@@ -38,11 +38,9 @@ class App:
             
             destination_db = await turbine.resources("mongo-atlas")
 
-            await destination_db.write(transformed, "alldispensedpills", 
-            {
+            await destination_db.write(transformed, "alldispensedpills", {
                 "transforms": "unwrap",
                 "transforms.unwrap.type": "io.debezium.connector.mongodb.transforms.ExtractNewDocumentState"
-            }
-            )
+            })
         except Exception as e:
             print(e, file=sys.stderr)
