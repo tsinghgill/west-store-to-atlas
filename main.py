@@ -12,10 +12,11 @@ def transform(records: RecordList) -> RecordList:
     for record in records:
         logging.info(f"input: {record}")
         try:
-            payload = record.value["payload"]["after"]
-            print("payload: " + payload)
-            payload["store_id"] = "002"
-            payload["store_location"] = "west"
+            record.value["payload"]["store_id"] = "002"
+            record.value["payload"]["store_location"] = "west"
+
+            record.value["payload"]["after"]["store_id"] = "002"
+            record.value["payload"]["after"]["store_location"] = "west"
 
             logging.info(f"output: {record}")
         except Exception as e:
