@@ -13,6 +13,7 @@ def transform(records: RecordList) -> RecordList:
         logging.info(f"input: {record}")
         try:
             payload = record.value["payload"]["after"]
+            print("payload: " + payload)
             payload["store_id"] = "002"
             payload["store_location"] = "west"
 
@@ -37,11 +38,11 @@ class App:
             
             destination_db = await turbine.resources("mongo-atlas")
 
-            await destination_db.write(transformed, "allDispensedPills", 
-            # {
-            #     "transforms": "unwrap",
-            #     "transforms.unwrap.type": "io.debezium.connector.mongodb.transforms.ExtractNewDocumentState"
-            # }
+            await destination_db.write(transformed, "alldispensedpills", 
+            {
+                "transforms": "unwrap",
+                "transforms.unwrap.type": "io.debezium.connector.mongodb.transforms.ExtractNewDocumentState"
+            }
             )
         except Exception as e:
             print(e, file=sys.stderr)
