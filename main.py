@@ -8,8 +8,10 @@ logging.basicConfig(level=logging.INFO)
 
 
 def transform(records: RecordList) -> RecordList:
+    print("Inside Tranform for west-store-to-atlas")
     logging.info(f"processing {len(records)} record(s)")
     for record in records:
+        print("Inside Tranform FOR LOOP for west-store-to-atlas")
         logging.info(f"input: {record}")
         try:
             record.value["payload"]["store_id"] = "002"
